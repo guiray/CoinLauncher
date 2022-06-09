@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class LauncherShooting : MonoBehaviour
 {
-    public Rigidbody coin;
-    public Transform fireTransform;
-    public float minLaunchForce = 15f;
-    public float maxLaunchForce = 30f;
-    public float maxChargeTime = 0.75f;
+    [SerializeField]
+    private Rigidbody coin;
+    [SerializeField]
+    private Transform fireTransform;
+    [SerializeField]
+    private float minLaunchForce = 15f;
+    [SerializeField]
+    private float maxLaunchForce = 30f;
+    [SerializeField]
+    private float maxChargeTime = 0.75f;
 
-    //private string m_FireButton;
     private float currentLaunchForce;
     private float chargeSpeed;
     private bool fired;
 
-    // Start is called before the first frame update
     void Start()
     {
         chargeSpeed = (maxLaunchForce - minLaunchForce) / maxChargeTime;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (currentLaunchForce >= maxLaunchForce && !fired)
@@ -49,7 +51,7 @@ public class LauncherShooting : MonoBehaviour
         Debug.Log(currentLaunchForce);
     }
 
-    void Fire()
+    private void Fire()
     {
         fired = true;
 
