@@ -5,7 +5,7 @@ using UnityEngine;
 public class LauncherShooting : MonoBehaviour
 {
     [SerializeField]
-    private Rigidbody coin;
+    private Rigidbody coinPrefab;
     [SerializeField]
     private Transform fireTransform;
     [SerializeField]
@@ -19,12 +19,12 @@ public class LauncherShooting : MonoBehaviour
     private float chargeSpeed;
     private bool fired;
 
-    void Start()
+    private void Start()
     {
         chargeSpeed = (maxLaunchForce - minLaunchForce) / maxChargeTime;
     }
 
-    void Update()
+    private void Update()
     {
         if (currentLaunchForce >= maxLaunchForce && !fired)
         {
@@ -55,7 +55,7 @@ public class LauncherShooting : MonoBehaviour
     {
         fired = true;
 
-        Rigidbody coinInstance = Instantiate(coin, fireTransform.position, fireTransform.rotation) as Rigidbody;
+        Rigidbody coinInstance = Instantiate(coinPrefab, fireTransform.position, fireTransform.rotation);
 
         coinInstance.velocity = currentLaunchForce * fireTransform.forward;
 
